@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # streamfilter v1.0 - a tool by @deadPix3l (CTN2 Curtis)
-# available on GOGS
 if [ $# -ne 2 ]; then
 	echo "usage: $0 file.pcap \"filter\""
 	echo "this script will find all tcp streams that contains packets matching the filter"
@@ -10,7 +9,8 @@ if [ $# -ne 2 ]; then
 	echo "NOTE: a side effect is that no matter what, it will keep all udp traffic"
 	echo " this may or may not be remedied at some future time"
 	echo ""
-	echo "WARNING: this will overwrite \"streamfilter.pcap\", which is a hardcoded filename. Don't like it, you fix it. im working on it."
+	echo "WARNING: this will overwrite \"streamfilter.pcap\", which is a hardcoded filename. This is being updated currently"
+	echo "These changes can be expected soon. in the meantime, please be aware this project is in Alpha and is not entirely stable."
 	exit 1
 fi
 
