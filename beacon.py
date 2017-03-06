@@ -4,11 +4,12 @@ import socket
 import time
     
 parser = argparse.ArgumentParser(description='Beacon is a simple script to test connections.')
-parser.add_argument('host', help="the host to connect to", type=str, default="127.0.0.1")
+parser.add_argument('host', nargs='?', help="the host to connect to", default="127.0.0.1")
 parser.add_argument('-s', '--server', help='Server mode [default: no]', action="store_true")
 parser.add_argument('-p', '--port', help='Port server is listening on', type=int, default=8080)
-parser.add_argument('-b', '--beacon', help='Text to send to server', type=str, default="beacon")
-args = vars(parser.parse_args())
+parser.add_argument('-b', '--beacon', help='Text to send to server', default="beacon")
+parser.add_argument('-i', '--interval', help="sleep interval", type=int, default=5)
+args = parser.parse_args()
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 if args.server:
@@ -17,15 +18,14 @@ if args.server:
     print "server started"
     conn, addr = s.accept()
     s.close()
-    print 'Connected by', addr
     
 else:
     s.connect((args.host, args.port))
     conn = s
     addr = args.host
-    print "Connected!"
-    
+
 try:
+    print 'Connected to', addr
     if args.server:
         while True:
             data = conn.recv(1024)
@@ -35,6 +35,7 @@ try:
             
     else:
         while True:
+            time.sleep(5)
             conn.sendall(args.beacon)
             data = s.recv(1024)
             if not data: break
