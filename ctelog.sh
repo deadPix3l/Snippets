@@ -3,24 +3,28 @@
 if [ -f "$CTE_LOGFILE" ] && [ -n "$CTE_CALLSIGN" ]
 then
 
+
+    TODAY=$(date +%d%b%y)
+    BEFORE=$(date +%H%M)
+    
     if [ "$#" -gt 0 ]
     then
         command=$@
+        # log before execute in case of failure
+        echo -ne "$CTE_CALLSIGN\t$TODAY\t$BEFORE\t$command\t" >> "$CTE_LOGFILE"
+        eval "$command"
+        
     else
-        read -p "CTE> " command
+        read -p "action> " command
+        echo -ne "$CTE_CALLSIGN\t$TODAY\t$BEFORE\t$command\t" >> "$CTE_LOGFILE"
     fi
 
-BEFORE=$(date +%s)
-# log before execute in case of failure
-echo -n "$BEFORE, $command, " >> "$CTE_LOGFILE"
-
-eval "$command"
-
-AFTER=$(date +%s)
+AFTER=$(date +%H%M)
 echo -n "$AFTER" >> "$CTE_LOGFILE"
 
+read -p "[result]: " result
 read -p "[comments]: " comments
-echo ", $comments" >> "$CTE_LOGFILE"
+echo -e "\t$result\t$comments" >> "$CTE_LOGFILE"
 
 else
 
