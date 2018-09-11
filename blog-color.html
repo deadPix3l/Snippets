@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  
+<style>
+html,
+body,
+h1 {
+	margin: 0;
+	padding: 0;
+	border: 0
+}
+
+html {
+	background-color: #fff;
+	font-size: 16px;
+	line-height: 1.5;
+	color: #333
+}
+
+@media (min-width: 940px) {
+	html {
+		font-size: 18px
+	}
+}
+
+body {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 10px
+}
+
+.f-right { float: right }
+.f-left { float: left }
+.parent { display: flex }
+.inner {	align-self: center }
+.justify-spaceBetween { justify-content: space-between}
+.w100 { width: 100% }
+
+body {
+	font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	color: #333
+}
+
+
+h1 {
+	font-size: 2.25em;
+	line-height: 1.3333em;
+	padding: 0.33335em 0
+}
+
+@media (min-width: 940px) {
+
+	h1 {
+		font-size: 2.6667em;
+		line-height: 1em;
+		padding: 0.25em 0
+	}
+}
+
+#header {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+	text-align: center;
+	margin-bottom: 3em;
+	height: 5em;
+	position: relative
+}
+
+#header a {
+	text-decoration: none;
+	display: inline-block;
+}
+
+#header h1 {
+	font-size: 2em;
+	padding-bottom: 0
+}
+
+#header h1 span {
+	color: rgba(0, 0, 0, 0.6);
+	font-weight: 300
+}
+
+.color-display {
+	font-size: .75em;
+	color: #AAA
+}
+
+</style>
+</head>
+<body>
+
+<header id="header" class="parent justify-spaceBetween">
+  <div class="inner w100 relative">
+    <span class="f-left">  
+      <a href="#">
+        <h1 class="colorMe">
+          <span>dead</span>Pix3l
+        </h1>
+      </a>
+      <span class="color-display">(#abcdef)</span>
+    </span>
+  </div>
+  
+    <div class="inner w100 relative" style="background-color: #ddd;">
+    <span class="f-left">  
+      <a href="#">
+        <h1 class="colorMe">
+          <span>dead</span>Pix3l
+        </h1>
+      </a>
+      <span class="color-display">(#abcdef)</span>
+    </span>
+  </div>
+  
+      <div class="inner w100 relative" style="background-color: #666;">
+    <span class="f-left">  
+      <a href="#">
+        <h1 class="colorMe">
+          <span>dead</span>Pix3l
+        </h1>
+      </a>
+      <span class="color-display">(#abcdef)</span>
+    </span>
+  </div>
+  
+      <div class="inner w100 relative" style="background-color: #333;">
+    <span class="f-left">  
+      <a href="#">
+        <h1 class="colorMe">
+          <span>dead</span>Pix3l
+        </h1>
+      </a>
+      <span class="color-display">(#abcdef)</span>
+    </span>
+  </div>
+</header>
+
+<script>
+function colorHeader(val) {
+   var recolor = document.getElementsByClassName("colorMe");
+   for (var i = 0; i < recolor.length; i++) { recolor[i].style.color = val;}
+   
+   var rename = document.getElementsByClassName("color-display");
+   for (var i = 0; i < rename.length; i++) { rename[i].innerHTML = '(' + val + ')';}
+   
+   
+}
+</script>
+
+<input type="color" onchange=colorHeader(this.value) />
+
+</body>
+</html>
